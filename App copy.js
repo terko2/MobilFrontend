@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,Linking, Button,TextInput } from 'react-native';
+import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity } from 'react-native';
+
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       data: [],
-      isLoading: true,
-      datum:""
+      isLoading: true
     };
   }
 
@@ -44,23 +44,6 @@ export default class App extends Component {
   }
 
 
-  evjarat=(ev)=>{
-    //alert(szam)
-    var datumok={
-      datum:szamok
-    }
-    alert(datumok.datum)
-    const response = fetch('http://192.168.6.7:3000/auto_evjarat',{
-      method: "POST",
-      body: JSON.stringify(datumok),
-      headers: {"Content-type": "application/json; charset=UTF-8"}
-    });
-      const text =  response.text();
-      console.log(text)
-  }
-
-
-
   render() {
     const { data, isLoading } = this.state;
 
@@ -73,18 +56,15 @@ export default class App extends Component {
             renderItem={({ item }) => (
 
               <View style={{marginBottom:30}}>
-              <Text style={{fontSize:30,color:'darkred',textAlign:'center'}}>
+              <Text style={{fontSize:30,color:'greenyellow',textAlign:'center'}}>
                 {item.auto_nev}
               </Text>
               <Image   source={{uri:'http://192.168.6.7:3000/'+item.auto_kep}} style={{width:300,height:300,alignSelf:'center'}}   />
-              <Text style={{fontSize:20,color:'dark',textAlign:'center'}}>
-                {item.auto_evjarat}
-              </Text>
               <TouchableOpacity
           style={styles.button}
           onPress={async ()=>this.szavazat(item.auto_id)}
         >
-          <Text style={{fontStyle:"italic",color:'white',fontSize:30}}>Ezt Kölcsönzőm</Text>
+          <Text style={{color:'white',fontSize:30}}>Ezt Kölcsönzőm</Text>
         </TouchableOpacity>           
               </View>
             )}
