@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,Linking, Button,TextInput } from 'react-native';
+//const ipcim="192.168.6.7:3000";
+const IP = require('./ipcim');
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +16,7 @@ export default class App extends Component {
 
   async getMovies() {
     try {
-      const response = await fetch('http://192.168.6.7:3000/auto');
+      const response = await fetch(IP.ipcim+'auto');
       const json = await response.json();
       console.log(json)
       this.setState({ data: json });
@@ -34,7 +37,7 @@ export default class App extends Component {
       bevitel1:szam
     }
     alert(adatok.bevitel1)
-    const response = fetch('http://192.168.6.7:3000/szavazat',{
+    const response = fetch(IP.ipcim+'szavazat',{
       method: "POST",
       body: JSON.stringify(adatok),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -50,7 +53,7 @@ export default class App extends Component {
       datum:szamok
     }
     alert(datumok.datum)
-    const response = fetch('http://192.168.6.7:3000/auto_evjarat',{
+    const response = fetch(IP.ipcim+'auto_evjarat',{
       method: "POST",
       body: JSON.stringify(datumok),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -85,6 +88,9 @@ export default class App extends Component {
           onPress={async ()=>this.szavazat(item.auto_id)}
         >
           <Text style={{fontStyle:"italic",color:'white',fontSize:30}}>Ezt Kölcsönzőm</Text>
+          <Text style={{fontSize:20,color:'darkred',textAlign:'center'}}>
+                {item.szalloda_neve}
+              </Text>
         </TouchableOpacity>           
               </View>
             )}
