@@ -72,12 +72,12 @@ export default class App extends Component {
         {isLoading ? <ActivityIndicator/> : (
           <FlatList
             data={data}
-            keyExtractor={({ auto_id }, index) => auto_id}
+            keyExtractor={({ szalloda_id }, index) => szalloda_id}
             renderItem={({ item }) => (
 
               <View style={{marginBottom:30}}>
               <Text style={{fontSize:30,color:'darkred',textAlign:'center'}}>
-                {item.auto_nev}
+                {item.szalloda_nev}
               </Text>
               <Image   source={{uri:'http://192.168.6.7:3000/'+item.auto_kep}} style={{width:300,height:300,alignSelf:'center'}}   />
               <Text style={{fontSize:20,color:'dark',textAlign:'center'}}>
@@ -85,12 +85,10 @@ export default class App extends Component {
               </Text>
               <TouchableOpacity
           style={styles.button}
-          onPress={async ()=>this.szavazat(item.auto_id)}
+          onPress={async ()=>this.szavazat(item.szallod_id)}
         >
           <Text style={{fontStyle:"italic",color:'white',fontSize:30}}>Ezt Kölcsönzőm</Text>
-          <Text style={{fontSize:20,color:'darkred',textAlign:'center'}}>
-                {item.szalloda_neve}
-              </Text>
+          
         </TouchableOpacity>           
               </View>
             )}
