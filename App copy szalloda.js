@@ -10,8 +10,7 @@ export default class App extends Component {
     this.state = {
       data: [],
       isLoading: true,
-      datum:"",
-      feladat:""
+      datum:""
     };
   }
 
@@ -72,34 +71,6 @@ export default class App extends Component {
 
     return (
       <View style={{ flex: 1, padding: 24 , marginTop:40}}>
-
-
-
-            <TextInput
-        style={{height: 35, borderColor:"blue",borderWidth:1, margin:5, padding:5}}
-        placeholder="Írd be egy szállodát!"
-        onChangeText={szoveg => this.setState({feladat : szoveg})}
-        value={this.state.feladat}
-      />       
-
-
-      <TouchableOpacity style={{marginTop:40,backgroundColor:"cornflowerblue",width:30,borderRadius:15,padding:5,alignItems:"center"}}
-      onPress={()=> this.setState({feladat:""})}
-      >
-              <Text>X</Text>
-            </TouchableOpacity>
-
-
-
-            <TouchableOpacity style={{marginLeft:"auto", marginRight:"auto",textAlign:"center",backgroundColor:"grey",width:100,borderRadius:5,padding:15,alignItems:"center"}}>
-              <Text>Menü</Text>
-            </TouchableOpacity>
-
-
-
-
-
-
         {isLoading ? <ActivityIndicator/> : (
           <FlatList
             data={data}
