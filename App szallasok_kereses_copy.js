@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,Linking, Button,TextInput } from 'react-native';
-
-
-
-
 //const ipcim="192.168.6.7:3000";
 const IP = require('./ipcim');
 
@@ -38,17 +34,13 @@ export default class App extends Component {
     this.getMovies();
   }
 
-  //Bemenet
-  
-
   szavazat=(szam)=>{
     //alert(szam)
     var adatok={
       bevitel1:szam
     }
-
     alert(adatok.bevitel1)
-    const response = fetch(IP.ipcim+'szalloda',{
+    const response = fetch(IP.ipcim+'szavazat',{
       method: "POST",
       body: JSON.stringify(adatok),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -73,19 +65,14 @@ export default class App extends Component {
       console.log(text)
   }
 
-/*Iconok és szinek
---------✈----------  
---------#68BBE3-----
-*/
+
+
   render() {
     const { data, isLoading } = this.state;
 
     return (
       <View style={{ flex: 1, padding: 24 , marginTop:40}}>
 
-<Text style={{fontSize:30,color:'#68BBE3',textAlign:'center'}}>
-                Nyaralás
-              </Text>
 
 
             <TextInput
@@ -94,23 +81,25 @@ export default class App extends Component {
         onChangeText={szoveg => this.setState({feladat : szoveg})}
         value={this.state.feladat}
       />       
-<TouchableOpacity style={{marginLeft:"auto",textAlign:"center",backgroundColor:"#68BBE3",width:100,borderRadius:15,padding:15,alignItems:"center"}}>
-<Button onPress={this.state.feladat} title="" /> 
 
-              <Text>Keresés</Text>
-            </TouchableOpacity>
-            
 
-      <TouchableOpacity style={{marginTop:20,backgroundColor:"red",width:30,borderRadius:15,padding:5,alignItems:"center"}}
+      <TouchableOpacity style={{marginTop:40,backgroundColor:"cornflowerblue",width:30,borderRadius:15,padding:5,alignItems:"center"}}
       onPress={()=> this.setState({feladat:""})}
       >
-            <Text>X</Text>
+              <Text>X</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{marginLeft:"auto", marginRight:"auto",textAlign:"center",backgroundColor:"#68BBE3",width:100,borderRadius:5,padding:15,alignItems:"center"}}>
+
+
+            <TouchableOpacity style={{marginLeft:"auto", marginRight:"auto",textAlign:"center",backgroundColor:"grey",width:100,borderRadius:5,padding:15,alignItems:"center"}}>
               <Text>Menü</Text>
             </TouchableOpacity>
-        
+
+
+
+
+
+
         {isLoading ? <ActivityIndicator/> : (
           <FlatList
             data={data}
@@ -120,9 +109,6 @@ export default class App extends Component {
               <View style={{marginBottom:30}}>
               <Text style={{fontSize:30,color:'darkred',textAlign:'center'}}>
                 {item.szalloda_neve}
-              </Text>
-              <Text style={{fontSize:30,color:'darkred',textAlign:'center'}}>
-                {item.csillagok_ertek}★ 
               </Text>
               <Image   source={{uri:'http://192.168.6.7:3000/'+item.szalloda_kep}} style={{width:300,height:300,alignSelf:'center'}}   />
               <Text style={{fontSize:20,color:'dark',textAlign:'center'}}>
@@ -134,13 +120,7 @@ export default class App extends Component {
         >
           <Text style={{fontStyle:"italic",color:'white',fontSize:30}}>Kivétel</Text>
           
-          
-        </TouchableOpacity>   
-
-        
-
-        
-                
+        </TouchableOpacity>           
               </View>
             )}
           />
