@@ -94,10 +94,10 @@ export default class App extends Component {
         onChangeText={szoveg => this.setState({feladat : szoveg})}
         value={this.state.feladat}
       />       
-<TouchableOpacity style={{marginLeft:"auto",textAlign:"center",backgroundColor:"#68BBE3",width:100,borderRadius:15,padding:15,alignItems:"center"}}>
-<Button onPress={this.state.feladat} title="" /> 
+<TouchableOpacity style={{marginLeft:"auto",textAlign:"center",backgroundColor:"#68BBE3",alignItems:"center"}}>
+<Button onPress={this.state.feladat} title="Keresés" /> 
 
-              <Text>Keresés</Text>
+              <Text></Text>
             </TouchableOpacity>
             
 
@@ -157,10 +157,10 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "blue",
-    padding: 10,
-    marginLeft:30,
-    marginRight:30
+    backgroundColor: "#68BBE3",
+    padding: 5,
+    marginLeft:20,
+    marginRight:20
   },
   countContainer: {
     alignItems: "center",
