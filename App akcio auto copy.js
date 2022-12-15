@@ -17,7 +17,7 @@ export default class App extends Component {
 
   async getMovies() {
     try {
-      const response = await fetch(IP.ipcim+'auto');
+      const response = await fetch(IP.ipcim+'auto_akcio');
       const json = await response.json();
       console.log(json)
       this.setState({ data: json });

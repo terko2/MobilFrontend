@@ -10,8 +10,7 @@ export default class App extends Component {
     this.state = {
       data: [],
       isLoading: true,
-      datum:"",
-      akcio:""
+      datum:""
     };
   }
 
@@ -37,9 +36,6 @@ export default class App extends Component {
     var adatok={
       bevitel1:szam
     }
-
-
-    
     alert(adatok.bevitel1)
     const response = fetch(IP.ipcim+'szavazat',{
       method: "POST",
@@ -67,12 +63,6 @@ export default class App extends Component {
   }
 
 
-  akcio=(ar)=>{
-    alert(szam)
-
-  }
-
-
 
   render() {
     const { data, isLoading } = this.state;
@@ -86,31 +76,21 @@ export default class App extends Component {
             renderItem={({ item }) => (
 
               <View style={{marginBottom:30}}>
-              <Text style={{fontSize:30,color:'black',textAlign:'center',backgroundColor:"#68BBE3"}}>
+              <Text style={{fontSize:30,color:'darkred',textAlign:'center'}}>
                 {item.auto_nev}
               </Text>
-
-              <Text style={{fontSize:20,color:'black'}}>
-                {item.auto_akcio}
-              </Text>
-
-              <Text style={{fontSize:20,color:'black'}}>
-                {item.auto_ar}
-              </Text>
-
-
               <Image   source={{uri:'http://192.168.6.7:3000/'+item.auto_kep}} style={{width:300,height:300,alignSelf:'center'}}   />
-              <Text style={{fontStyle:"italic",fontSize:20,color:'dark',backgroundColor:"#68BBE3",textAlign:'center'}}>
-                Évjárata:{item.auto_evjarat}
+              <Text style={{fontSize:20,color:'dark',textAlign:'center'}}>
+                {item.auto_evjarat}
               </Text>
-
-
               <TouchableOpacity
           style={styles.button}
           onPress={async ()=>this.szavazat(item.auto_id)}
         >
           <Text style={{fontStyle:"italic",color:'white',fontSize:30}}>Ezt Kölcsönzőm</Text>
-          
+          <Text style={{fontSize:20,color:'darkred',textAlign:'center'}}>
+                {item.szalloda_neve}
+              </Text>
         </TouchableOpacity>           
               </View>
             )}
@@ -128,7 +108,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "#68BBE3",
+    backgroundColor: "blue",
     padding: 10,
     marginLeft:30,
     marginRight:30
