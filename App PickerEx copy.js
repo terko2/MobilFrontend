@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,Linking, Button,TextInput, Picker} from 'react-native';
+import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,Linking, Button,TextInput,Picker } from 'react-native';
 //const ipcim="192.168.6.7:3000";
 const IP = require('./ipcim');
 
@@ -13,6 +13,20 @@ export default class App extends Component {
       datum:"",
       akcio:""
     };
+  }
+
+
+  constructor()
+  {
+    super();
+    this.state={selectedLabel:''};
+  }
+
+
+  Show=(value)=>
+  {
+    alert(value)
+    this.setState({selectedLabel:value});
   }
 
   async getMovies() {
@@ -85,8 +99,6 @@ export default class App extends Component {
             keyExtractor={({ auto_id }, index) => auto_id}
             renderItem={({ item }) => (
 
-
-
               <View style={{marginBottom:30}}>
               <Text style={{fontSize:30,color:'black',textAlign:'center',backgroundColor:"#68BBE3"}}>
                 {item.auto_nev}
@@ -97,15 +109,7 @@ export default class App extends Component {
               </Text>
 
               <Text style={{fontSize:20,color:'black',textAlign:'center'}}>
-              { item.auto_akcio==''    ? 
-              null
-              :   <View>
-              <Text style={{fontSize:20,backgroundColor:'#FFBF00',textAlign:'center'}}>Akciós ár :</Text>
-                <Text style={{fontSize:20,backgroundColor:'#FFBF00',textAlign:'center'}}>{item.auto_akcios_ar}</Text>
-                </View>
-              }
-               
-                
+                {item.auto_akcios_ar}
               </Text>
 
               <Text style={{fontSize:20,color:'black',textAlign:'right'}}>
@@ -117,7 +121,18 @@ export default class App extends Component {
               </Text>
 
 
-                
+                <Picker>
+                  selectedValue={this.state.selectedLabel}
+                  onValueChange={this.Show.bind()}
+
+
+
+
+                <Picker.Item label="Select a Course" value="0"></Picker.Item>
+                <Picker.Item label="React" value="8000"></Picker.Item>
+                <Picker.Item label="PHP" value="7000"></Picker.Item>
+                <Picker.Item label="HTML" value="6000"></Picker.Item>
+                </Picker>
 
 
               
@@ -132,7 +147,7 @@ export default class App extends Component {
           style={styles.button}
           onPress={async ()=>this.szavazat(item.auto_id)}
         >
-          <Text style={{fontStyle:"italic",color:'white',fontSize:30}}>Ezt Kölcsönzöm</Text>
+          <Text style={{fontStyle:"italic",color:'white',fontSize:30}}>Ezt Kölcsönzőm</Text>
           
         </TouchableOpacity>           
               </View>
@@ -161,3 +176,15 @@ const styles = StyleSheet.create({
     padding: 10
   }
 });
+
+
+
+/**
+ * @format
+ */
+
+ import{ AppRegistry } from 'react-native';
+ import App from './PickerEx';
+ import {name as appName} from './app.json';
+ 
+ AppRegistry.registerComponent(appName, ()=> App);
