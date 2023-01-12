@@ -15,3 +15,9 @@ https://www.dollarcars4rent.com/
 https://www.rentalcars.com/hu/
 -----------------------------------
 https://www.npmjs.com/package/react-native-booking-calendar
+
+kölcsönzés tábla id,auto id,datum,nap
+
+backend végpont insert,(kölcsönzés táblára) teszt postmanbe
+
+Ezt kölcsönzöm gombra fetchelni

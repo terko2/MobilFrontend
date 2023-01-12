@@ -11,7 +11,9 @@ export default class App extends Component {
       data: [],
       isLoading: true,
       datum:"",
-      akcio:""
+      akcio:"",
+      nap:""
+      
     };
   }
 
@@ -28,6 +30,40 @@ export default class App extends Component {
     }
   }
 
+    //Kölcsönzés
+  felvitel=async ()=>{
+    //alert(this.props.akttema)
+    try {
+      let adatok={
+        bevitel1:this.state.tabla_id,
+        bevitel2:this.state.auto_id,
+        bevitel3:this.state.datum,
+        bevitel4:this.state.nap,
+        bevitel5:"2022-11-17",
+        bevitel6:this.props.akttema
+      }
+      const response = await fetch(IP.ipcim+'felvitel',
+      {
+        method: "POST",
+        body: JSON.stringify(adatok),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+      }
+      );
+      
+      alert(response)
+      
+    } catch (error) {
+      console.log(error);
+    } finally {
+      
+    }
+    
+
+
+} 
+//------------------------------------
+
+
   componentDidMount() {
     this.getMovies();
   }
@@ -39,7 +75,7 @@ export default class App extends Component {
     }
 
 
-    
+  
     alert(adatok.bevitel1)
     const response = fetch(IP.ipcim+'szavazat',{
       method: "POST",
@@ -72,6 +108,7 @@ export default class App extends Component {
 
   }
 
+  
 
 
   render() {
@@ -85,6 +122,7 @@ export default class App extends Component {
             keyExtractor={({ auto_id }, index) => auto_id}
             renderItem={({ item }) => (
 
+              
 
 
               <View style={{marginBottom:30}}>
@@ -96,7 +134,7 @@ export default class App extends Component {
                 {item.auto_akcio}
               </Text>
 
-              <Text style={{fontSize:20,color:'black',textAlign:'center'}}>
+             
               { item.auto_akcio==''    ? 
               null
               :   <View>
@@ -106,7 +144,7 @@ export default class App extends Component {
               }
                
                 
-              </Text>
+              
 
               <Text style={{fontSize:20,color:'black',textAlign:'right'}}>
                 {item.auto_napiar}
@@ -117,7 +155,9 @@ export default class App extends Component {
               </Text>
 
 
-                
+             
+  
+        
 
 
               
@@ -130,9 +170,13 @@ export default class App extends Component {
 
               <TouchableOpacity
           style={styles.button}
-          onPress={async ()=>this.szavazat(item.auto_id)}
+          onPress={async ()=>this.szavazat(item.auto_id,item.datum,item.nap)}
         >
           <Text style={{fontStyle:"italic",color:'white',fontSize:30}}>Ezt Kölcsönzöm</Text>
+          <Button
+            onPress={()=>this.felvitel()}
+            title="Felvitel"
+          />
           
         </TouchableOpacity>           
               </View>
