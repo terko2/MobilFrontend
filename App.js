@@ -79,22 +79,30 @@ export default class App extends Component {
             keyExtractor={({ auto_id }, index) => auto_id}
             renderItem={({ item }) => (
 
-              <View style={{marginBottom:30}}>
-              <Text style={{fontSize:30,color:'darkred',textAlign:'center'}}>
+              <View style={{marginBottom:20}}>
+              <Text style={{fontSize:15,color:'black',textAlign:'left'}}>
+                {item.auto_nev}
+                </Text>
+                
+              <Image   source={{uri:'http://192.168.6.7:3000/'+item.auto_kep}} style={{width:150,height:150,alignSelf:'left'}}   />
+              <Text style={{fontSize:15,color:'darkred',textAlign:'left'}}>
                 {item.kolcsonzes_datum}
+                </Text>
+              <Text style={{fontSize:20,color:'dark',textAlign:'left'}}>
+                Az ár {item.kolcsonzes_nap} napra:
               </Text>
-              <Image   source={{uri:'http://192.168.6.7:3000/'+item.auto_kep}} style={{width:300,height:300,alignSelf:'center'}}   />
-              <Text style={{fontSize:20,color:'dark',textAlign:'center'}}>
-                {item.kolcsonzes_nap}
+              <Text style={{fontSize:18,color:'black',textAlign:'Left'}}>
+                {item.auto_ar}
+                </Text>
+              <Text style={{fontSize:15,color:'black',textAlign:'center'}}>
+              A kölcsönzött telefonszáma: +36{item.kolcsonzes_telefon}
               </Text>
-              <Text style={{fontSize:20,color:'darkred',textAlign:'center'}}>
-                {item.kolcsonzes_telefon}
-              </Text>
+              
               <TouchableOpacity
           style={styles.button}
-          onPress={async ()=>this.szavazat(item.auto_id)}
+          onPress={async ()=>this.szavazat(item.auto_nev)}
         >
-          <Text style={{fontStyle:"italic",color:'white',fontSize:30}}>Kölcsönzés</Text>
+          <Text style={{fontStyle:"italic",color:'white',fontSize:20}}>Kölcsönzés</Text>
           
         </TouchableOpacity>           
               </View>
@@ -113,7 +121,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "blue",
+    backgroundColor: "#68BBE3",
     padding: 10,
     marginLeft:30,
     marginRight:30
