@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,Linking, Button,TextInput } from 'react-native';
 //const ipcim="192.168.6.7:3000";
 const IP = require('./ipcim');
-
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -14,9 +13,6 @@ export default class App extends Component {
       nap:""
     };
   }
-
-
-
   async getMovies() {
     try {
       const response = await fetch(IP.ipcim+'kolcsonzes');
@@ -29,12 +25,10 @@ export default class App extends Component {
       this.setState({ isLoading: false });
     }
   }
-
   
   componentDidMount() {
     this.getMovies();
   }
-
   szavazat=(szam)=>{
     //alert(szam)
     var adatok={
@@ -49,8 +43,6 @@ export default class App extends Component {
       const text =  response.text();
       console.log(text)
   }
-
-
   evjarat=(ev)=>{
     //alert(szam)
     var datumok={
@@ -65,12 +57,8 @@ export default class App extends Component {
       const text =  response.text();
       console.log(text)
   }
-
-
-
   render() {
     const { data, isLoading } = this.state;
-
     return (
       <View style={{ flex: 1, padding: 24 , marginTop:40}}>
         {isLoading ? <ActivityIndicator/> : (
@@ -78,7 +66,6 @@ export default class App extends Component {
             data={data}
             keyExtractor={({ auto_id }, index) => auto_id}
             renderItem={({ item }) => (
-
               <View style={{marginBottom:20}}>
               <Text style={{fontSize:15,color:'black',textAlign:'left'}}>
                 {item.auto_nev}
