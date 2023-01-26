@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,ImageBackground,Linking, Button,TextInput,Alert } from 'react-native';
+import {StyleSheet, ActivityIndicator, FlatList, Text, View, Image, TouchableOpacity,Linking, Button,TextInput,ImageBackground,Alert } from 'react-native';
 
 //const ipcim="192.168.6.7:3000";
 
@@ -105,6 +105,10 @@ atalakit=(parameter)=>{
 
               <View style={{backgroundColor:'black',marginBottom:5}}>
 
+              
+
+
+
 
                 <ImageBackground source={image} resizeMode="cover" style={styles.image}>
               <Text style={{fontSize:20,color:'#68BBE3',textAlign:'left'}}>
@@ -145,10 +149,9 @@ atalakit=(parameter)=>{
                 </View>
               }
               
-                <Text style={{fontSize:20,color:'black',textAlign:'right'}}>
+                <Text style={{fontSize:18,color:'black',textAlign:'right'}}>
                 {item.auto_akcios_ar}
                 </Text>
-
               <Text style={{fontSize:15,color:'black',textAlign:'center'}}>
               A kölcsönzött telefonszáma: +36{item.kolcsonzes_telefon}
               </Text>
@@ -165,8 +168,6 @@ atalakit=(parameter)=>{
         
      
     </ImageBackground>
-                
-
                 
               </View>
             )}
@@ -193,8 +194,6 @@ const styles = StyleSheet.create({
       
     }
   },
-
-  
   button: {
     alignItems: "center",
     backgroundColor: "#68BBE3",
@@ -202,8 +201,6 @@ const styles = StyleSheet.create({
     marginLeft:40,
     marginRight:40
   },
-
-
   button_i: {
     flex:1,
     alignItems: "center",
@@ -215,25 +212,19 @@ const styles = StyleSheet.create({
     borderRadius:10,
     
   },
-
-
   countContainer: {
     alignItems: "center",
     padding: 10
   },
-
-
   image: {
     flex: 1,
     justifyContent: 'center',
     
   },
-
-  
   text: {
     color: 'white',
-    fontSize: 20,
-    lineHeight: 30,
+    fontSize: 42,
+    lineHeight: 84,
     fontWeight: 'bold',
     textAlign: 'center',
     backgroundColor: '#000000c0',
