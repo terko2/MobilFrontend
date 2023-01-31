@@ -140,7 +140,7 @@ atalakit=(parameter)=>{
                 { item.auto_akcio==''    ? 
               null
               :   <View>
-              <Text style={{fontSize:15,backgroundColor:'#FFBF00',textAlign:'center',}}>Akciós ár :</Text>
+              <Text style={{fontSize:20,backgroundColor:'#FFBF00',textAlign:'center'}}>Akciós ár :</Text>
                 <Text style={{fontSize:20,backgroundColor:'#FFBF00',textAlign:'center'}}>{item.auto_akcios_ar}</Text>
                 </View>
               }
