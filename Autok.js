@@ -55,7 +55,7 @@ export default class App extends Component {
       console.log(text)
   }
 
-//Gomb
+//Gomb használat 
   gombok=(gomb)=>{
     //alert(szam)
     var adatok={
